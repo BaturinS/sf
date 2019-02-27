@@ -27,3 +27,15 @@ function get_all_posts()
 
     return $posts;
 }
+
+function getPostById($id)
+{
+    $dbconn = open_database_connection();
+    $result = pg_query($dbconn, "SELECT title, text, date FROM post WHERE id = $id");
+
+    $post = pg_fetch_assoc($result);
+
+    close_database_connection($dbconn);
+
+    return $post;
+}
