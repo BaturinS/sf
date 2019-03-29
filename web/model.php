@@ -16,7 +16,7 @@ function close_database_connection($dbconn)
 function get_all_posts()
 {
     $dbconn = open_database_connection();
-    $result = pg_query($dbconn, 'SELECT id, title FROM post');
+    $result = pg_query($dbconn, 'SELECT id, title FROM post ORDER BY id');
 
     $posts = [];
     while ($row = pg_fetch_assoc($result)) {
