@@ -6,7 +6,7 @@ ob_start();
 <h1>List of Posts</h1>
 <ul>
     <?php foreach ($posts as $post): ?>
-        <li><a href="?id=<?php echo $post['id'] ?>"><?php echo $post['title'] ?></a></li>
+        <li><a href="/show/<?php echo $post['id'] ?>"><?php echo $post['title'] ?></a></li>
     <?php endforeach; ?>
 </ul>
 

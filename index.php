@@ -8,7 +8,7 @@ require_once 'controllers.php';
 $uri = $_SERVER['REQUEST_URI'];
 if ($uri == '/') {
     list_action();
-} elseif ($uri == isset($_GET['id'])) {
+} elseif (strpos($uri,'/show') === 0 && isset($_GET['id'])) {
     show_action($_GET['id']);
 } else {
     header('Status: 404 Not Found');
