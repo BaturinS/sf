@@ -31,7 +31,7 @@ function get_all_posts()
 function getPostById($id)
 {
     $dbconn = open_database_connection();
-    $result = mysqli_query($dbconn, "SELECT title, text, date FROM post WHERE id = $id");
+    $result = mysqli_query($dbconn, "SELECT title, text, created_at FROM post WHERE id = $id");
 
     $post = mysqli_fetch_assoc($result);
 
