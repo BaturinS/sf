@@ -1,8 +1,7 @@
 <?php
 
 // Загружаем и инициализируем глобальные библиотеки
-require_once 'model.php';
-require_once 'controllers.php';
+require_once 'app/bootstrap.php';
 
 // Внутренняя маршрутизация
 $uri = $_SERVER['REQUEST_URI'];
