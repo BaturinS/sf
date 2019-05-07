@@ -1,15 +1,24 @@
 <?php
-
 // Загружаем и инициализируем глобальные библиотеки
-require_once 'app/bootstrap.php';
+require_once 'model.php';
+require_once 'controllers.php';
+require_once 'vendor/autoload.php';
+
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+$request = Request::createFromGlobals();
 
 // Внутренняя маршрутизация
-$uri = $_SERVER['REQUEST_URI'];
+$uri = $request->getPathInfo();
 if ($uri == '/') {
-    list_action();
-} elseif (strpos($uri,'/show') === 0 && isset($_GET['id'])) {
-    show_action($_GET['id']);
+    $response = list_action();
+} elseif (strpos($uri,'/show') === 0 && $request->query->has('id')) {
+    $response = show_action($request->query->get('id'));
 } else {
-    header('Status: 404 Not Found');
-    echo '<html><body><h1>Page Not Found</h1></body></html>';
+    $html = '<html><body><h1>Page Not Found</h1></body></html>';
+    $response = new Response($html, 404);
 }
+
+// Вывод заголовков и отправка ответа
+$response->send();
